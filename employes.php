@@ -6,7 +6,7 @@ class Employe {
     protected $prenom;
     protected $dateDeNaissance;
 
-    function _construct($matricule,$nom,$prenom,$dateDeNaissance) {
+    public  function __construct($matricule,$nom,$prenom,$dateDeNaissance) {
         $this->matricule = $matricule;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -39,10 +39,10 @@ class Employe {
         return $this->dateDeNaissance;
     }
     function afficher() {
-        echo $this->matricule;
-        echo $this->nom;
-        echo $this->prenom;
-        echo $this->dateDeNaissance;
+        echo "son num de matricule est : " . $this->matricule ."\n";
+        echo "son nom est : " . $this->nom ."\n";
+        echo "son prenom est : " . $this->prenom ."\n";
+        echo "sa date de naissance est : " . $this->dateDeNaissance ."\n";
  
     }
 }
@@ -51,11 +51,10 @@ class Ouvrier extends Employe {
     protected $dateEntree;
 
     function __construct($matricule,$nom,$prenom,$dateDeNaissance,$dateEntree) {
-        $this->matricule = $matricule;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->dateDeNaissance = $dateDeNaissance;
+    parent::__construct($matricule,$nom,$prenom,$dateDeNaissance); 
+    
         $this->dateEntree = $dateEntree;
+
     }
     function get_dateEntree() {
         return $this->dateEntree;
@@ -73,16 +72,19 @@ class Ouvrier extends Employe {
        
     }
     
+    function afficher()
+    {
+        echo "sont salaire est de : " . $this->get_salaire()."$"."\n";
+        parent::afficher();
+    }
+    
 }
 
 class Cadre extends Employe {
     protected $indiceSalaire;
 
-    function __construct($matricule,$nom,$prenom,$dateDeNaissance,$indiceSalaire) {
-        $this->matricule = $matricule;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->dateDeNaissance = $dateDeNaissance;
+     function __construct($matricule,$nom,$prenom,$dateDeNaissance,$indiceSalaire) {
+        parent::__construct($matricule,$nom,$prenom,$dateDeNaissance);
         $this->indiceSalaire = $indiceSalaire;
     }
     function get_salaire() {
@@ -98,6 +100,11 @@ class Cadre extends Employe {
        return $salaire;
     }
     
+    function afficher()
+    {
+        echo "sont salaire est de : " . $this->get_salaire()."$"."\n";
+        parent::afficher();
+    }
 
 }
 
@@ -106,10 +113,8 @@ class Patron extends Employe {
     protected $pourcentage;
 
     function __construct($matricule,$nom,$prenom,$dateDeNaissance,$chiffreAffaire,$pourcentage) {
-        $this->matricule = $matricule;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->dateDeNaissance = $dateDeNaissance;
+        parent::__construct($matricule,$nom,$prenom,$dateDeNaissance); 
+     
         $this->chiffreAffaire = $chiffreAffaire;
         $this->pourcentage = $pourcentage;
        
@@ -118,15 +123,23 @@ class Patron extends Employe {
         $salaire = $this->chiffreAffaire * $this->pourcentage / 100;
         return $salaire;
     }
-    
+
+    function afficher()
+    {
+        echo "sont salaire est de : " . $this->get_salaire()."$"."\n";
+        parent::afficher();
+    }
+ 
 }
 
 
 $ouvrier = new Ouvrier('20', "paul", "jean",'20.06.2000', 2020 );
-$cadre = new Cadre('20', "paul", "jean",'20.06.2000', 3 );
+$cadre = new Cadre('20', "paul", "jean","10.05.1976",'20.06.2000',3 );
 $patron = new Patron('20', "paul", "jean",'20.06.2000', 100000, 30 );
 
-echo $ouvrier->get_salaire()."\n";
-echo $cadre->get_salaire()."\n";
-echo $patron->get_salaire();
+
+$patron->afficher();
+$cadre->afficher();
+$ouvrier->afficher();
+
 
