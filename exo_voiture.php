@@ -72,3 +72,6 @@ class Vehicule {
     $camion-> demarrer();
     echo ' ';
     $camion->accellerer();
+
+
+   
