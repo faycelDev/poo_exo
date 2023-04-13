@@ -29,33 +29,36 @@ class Employe {
 
     function augmentationSalaire() {
         $anciennete =  2023 - $this->dateEmbauche;
-        if ($anciennete < 5){
-       $salaire=  $this->salaire *= 2 / 100;
-         return $this->salaire;
-        }elseif($anciennete < 10) {
-            $salaire=   $this->salaire *= 5 / 100;
-            return $this->salaire;
+        if ($anciennete <= 5){
+       $augmentation=  $this->salaire * 2 / 100;
+       $this->salaire += $augmentation;
+    }elseif($anciennete <= 10) {
+            $augmentation = $this->salaire * 5 / 100;
+            $this->salaire += $augmentation;
         }else{
-            $salaire=   $this->salaire *= 10 / 100;
-            return $salaire;
+            $augmentation = $this->salaire * 10 / 100;
+             $this->salaire += $augmentation;
         }
     }
 
     function afficher() {
-        echo "Matricule : " . $this->matricule. "\n";
-        echo "Nom : " . $this->nom. "\n";
-        echo "Prenom : " . $this->prenom. "\n";
-        echo "il est né en : " . $this->dateDeNaissance. "\n";
-        echo "il a était embauché en : " . $this->dateEmbauche. "\n";
-        echo "Son salaire s'élève a : " . $this->salaire. "£". "\n";
-        echo "Il est agé de : " .  $this->age(). " ans ". "\n";
-       echo "Ancienneté : " .$this->anciennete(). " ans "."\n";
-       echo "Au regard de son ancienneté il a obtenu une augmentation de : " . $this->augmentationSalaire() . "£"."\n";
+        echo "-Matricule : " . $this->matricule. "\n";
+        echo "-Nom : " . $this->nom. "\n";
+        echo "-Prenom : " . $this->prenom. "\n";
+        echo "-Il est né en : " . $this->dateDeNaissance. "\n";
+        echo "-Il a était embauché en : " . $this->dateEmbauche. "\n";
+        echo "-Son salaire s'élève a : " . $this->salaire. "£". "\n";
+        echo "-Il est agé de : " .  $this->age(). " ans ". "\n";
+        echo "-Ancienneté : " .$this->anciennete(). " ans "."\n"; 
     }
-        
+    
+
     
     
 }
 
 $employe = new Employe (133201, "Dupont", "Jean", 1968 , 2010, 1500);
 $employe->afficher();
+$employe->augmentationSalaire();
+$employe->afficher();
+
