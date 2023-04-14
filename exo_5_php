@@ -1,0 +1,100 @@
+<?php
+
+  class Professeur {
+    public $nom;
+    public $prenom;
+    public $telephone;
+    public $email;
+    public $specialites;
+
+    function __construct($nom, $prenom, $telephone, $email, $specialites) {
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->telephone = $telephone;
+        $this->email = $email;
+        $this->specialites = $specialites;
+    }
+
+    function set_nom($nom) {
+        $this->nom = $nom;
+    }
+    function set_prenom($prenom) {
+        $this->prenom = $prenom;
+    }
+    function set_telephone($telephone) {
+        $this->telephone = $telephone;
+    }
+    function set_email($email) {
+        $this->email = $email;
+    }
+    function set_specialite($specialites) {
+        $this->specialites = $specialites;
+    }
+
+    function get_nom() {
+        return $this->nom;
+    }
+    function get_prenom() {
+        return $this->prenom;
+    }
+    function get_telephone() {
+        return $this->telephone;
+    }
+    function get_email() {
+        return $this->email;
+    }
+    function get_specialites() {
+        return $this->specialites;
+    }
+
+    function afficher() {
+        echo $this->nom." ";
+        echo $this->prenom." ";
+        echo $this->telephone." ";
+        echo $this->email." ";
+        echo "\n il a comme specialité \n";
+        foreach ($this->specialites as $specialite) {
+            echo " ";
+            $specialite->afficher();
+        }
+    }
+ }
+    class Specialites {
+        public $code;
+        public $libelle;
+
+        function __construct($code,$libelle) {
+            $this->code = $code;
+            $this->libelle = $libelle;
+        }
+
+        function set_code($code) {
+            $this->code = $code;
+        }
+        function set_libelle($libelle) {
+            $this->libelle = $libelle;
+        }
+        function get_code() {
+            return $this->code;
+        }
+        function get_libelle() {
+            return $this->libelle;
+        }
+        function afficher() {
+            echo $this->code;
+           echo $this->libelle;
+        }
+    }
+ 
+
+
+ 
+
+ $specialite1 = new Specialites("100", "java");
+ $specialite2 = new Specialites("200", "javaScript");
+ $specialite3 = new Specialites("300", "c++");
+
+ $listeSpecialites = array($specialite1, $specialite2, $specialite3);
+
+ $professeur1 = new Professeur("Robert","Dupuis", "08.77.20.64.52" , "robertdupuis@outlook.fr", $listeSpecialites);
+ $professeur1->afficher();

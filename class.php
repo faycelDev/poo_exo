@@ -95,4 +95,4 @@ $listeFilieres = array($filiere1, $filiere2, $filiere3, $filiere4, $filiere5);
 
 $etudiant1 = new Etudiant("Rachid","bahreini", "20.06.1998", $listeFilieres);
 
-echo $etudiant1->afficher();
+$etudiant1->afficher();
